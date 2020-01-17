@@ -3,6 +3,12 @@ import React from "react";
 export default class SearchBar extends React.Component {
   state = { term: "" };
 
+  onSubmit = event => {
+    event.preventDefault();
+
+    this.props.onSubmit(this.state.term);
+  };
+
   onChange = event => {
     this.setState({ term: event.target.value });
   };
@@ -10,7 +16,7 @@ export default class SearchBar extends React.Component {
   render() {
     return (
       <div className="ui segment">
-        <form className="ui form">
+        <form className="ui form" onSubmit={this.onSubmit}>
           <div className="field">
             <label htmlFor="search">Image Search</label>
             <input
